@@ -12,12 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 
-from pathlib import Path
-
-PROJECT_PACKAGE = Path(__file__).resolve().parent.parent
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = PROJECT_PACKAGE.parent
+BASE_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)), '..')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -64,7 +59,7 @@ ROOT_URLCONF = 'jenga.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(PROJECT_PACKAGE.joinpath('templates'))],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
