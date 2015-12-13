@@ -1,1 +1,1 @@
-web: gunicorn jenga.wsgi --log-file -
+web: gunicorn jenga.app --log-file -
