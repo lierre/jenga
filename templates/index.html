@@ -80,6 +80,7 @@
 					<p>Are you involved in community work and want to work with us? Please write to us and we will get back to you as soon as possible.</p>
 
 					<form method="POST" action="/mail/">
+                        {%  csrf_token %}
 						<div class="row">
 							<div class="6u 12u(mobilep)">
 								<input type="text" name="name" placeholder="Name" />
