@@ -1,37 +1,10 @@
+#!/usr/bin/env python
+import os
 import sys
 
-from flask.ext.script import Manager, Shell
+if __name__ == "__main__":
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "jenga.settings")
 
-from jenga import create_app
-from jenga.extensions import db
+    from django.core.management import execute_from_command_line
 
-
-def _make_context():
-    from jenga.extensions import db
-    return dict(db=db)
-
-app = create_app()
-manager = Manager(app)
-manager.add_command("shell", Shell(make_context=_make_context))
-
-
-@manager.command
-def run():
-    """Run web server for local development"""
-    app.run(debug=True, host='0.0.0.0', port=8080)
-
-
-@manager.command
-def reset_db():
-    """Reset the database"""
-    print "WARNING: This will reset the database and may cause data loss."
-    response = raw_input("Are you sure you want to continue? (Yes/No)")
-    if not response == "Yes":
-        print "Aborted."
-        sys.exit()
-
-    db.drop_all()
-    db.create_all()
-
-if __name__ == '__main__':
-    manager.run()
+    execute_from_command_line(sys.argv)
