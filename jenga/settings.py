@@ -79,7 +79,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-if 'DATABASE_URI' not in os.environ:
+if 'DATABASE_URL' not in os.environ:
     from local import DATABASES
     DATABASES = DATABASES
 else:
